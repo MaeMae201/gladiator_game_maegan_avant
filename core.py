@@ -32,6 +32,16 @@ def attack(attacker, defender):
     -If gladiator crits, their rage is reset to 0
     -If gladiator hits normally, their rage is +15
     """
+    normal = randint(attacker['Damage Low'], attacker['Damage High'])
+    crit = normal * 2
+    attack = random.choice([normal, crit])
+    if attack == normal:
+        defender['Health'] -= normal
+        attacker['Rage'] += 15
+    elif attack == crit:
+        defender['Health'] -= crit
+        attacker['Rage'] = 0
+        return attack
 
 
 def heal(gladiator):

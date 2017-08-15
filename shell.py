@@ -17,14 +17,19 @@ def main():
     print('\nGet Ready To Fight...\n\n')
     time.sleep(1)
 
-    health = randint(0, 100)
-    rage = randint(0, 100)
-    damage_low = randint(0, 25)
-    damage_high = randint(25, 50)
+    health = 100
+    rage = 20
+    damage_low = 15
+    damage_high = 30
 
     values = core.new_gladiator(health, rage, damage_low, damage_high)
     for key, value in values.items():
         print('*', key, '-----', value)
+    attacker = values
+    defender = values
+
+    gladiator = core.attack(attacker, defender)
+    print(gladiator)
 
 
 if __name__ == '__main__':
