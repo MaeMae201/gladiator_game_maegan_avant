@@ -41,7 +41,7 @@ def main():
             '\n\n Whats your move fighter?\n\n\n -Attack\n -Heal\n\n')
 
         if decision == 'attack'.lower():
-            core.attack(gladiator_1, gladiator_2)
+            core.attack(gladiator_1)
 
         elif decision == 'heal'.lower():
             core.heal(gladiator_1)
@@ -71,7 +71,7 @@ def main():
                 '\n\n Whats your move fighter?\n\n\n -Attack\n -Heal\n\n')
 
             if decision == 'attack'.lower():
-                core.attack(gladiator_1, gladiator_2)
+                core.attack(gladiator_2)
 
             elif decision == 'heal'.lower():
                 core.heal(gladiator_2)
