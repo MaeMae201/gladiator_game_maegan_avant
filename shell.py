@@ -15,33 +15,71 @@ def main():
         return input()
 
     print('\nGet Ready To Fight...\n\n')
-    time.sleep(1)
+    time.sleep(1.5)
 
     health = 100
-    rage = 50
-    damage_low = 20
-    damage_high = 30
+    rage = 0
+    damage_low = 10
+    damage_high = 20
 
-    print('Gladiator_1 its your turn to begin')
+    while True:
+        gladiator_1 = core.new_gladiator('Player 1', health, rage, damage_low,
+                                         damage_high)
+        gladiator_2 = core.new_gladiator('Player 2', health, rage, damage_low,
+                                         damage_high)
 
-    choice = '\n Whats your move fighter?\n -attack\n -heal\n'
-    attacker = core.new_gladiator(health, rage, damage_low, damage_high)
-    for key, value in attacker.items():
-        print('*', key, '---', value, '\n')
-    defender = core.new_gladiator(health, rage, damage_low, damage_high)
-    print('Gladiator_2')
-    for key, value in defender.items():
-        print('*', key, '---', value, '\n')
+        print('*************************************************************')
+        print('{}: Health:{}, Rage:{}, || {}: Health:{}, Rage:{} '.format(
+            gladiator_1['Name'], gladiator_1['Health'], gladiator_1['Rage'],
+            gladiator_2['Name'], gladiator_2['Health'], gladiator_2['Rage']))
+        print('_____________________________________________________________')
+        time.sleep(1.3)
 
-    decision = input(choice)
-    if decision == 'attack':
-        decision = core.attack(attacker, defender)
-        print(decision)
+        print('\n\nPlayer 1 is Up!\n\n')
+        time.sleep(1)
+        decision = slow_type(
+            '\n\n Whats your move fighter?\n\n\n -Attack\n -Heal\n\n')
 
-    if decision == 'heal':
-        decision = core.heal(gladiator)
-        print(choice)
+        if decision == 'attack'.lower():
+            core.attack(gladiator_1, gladiator_2)
 
+        elif decision == 'heal'.lower():
+            core.heal(gladiator_1)
+
+        elif health == 0:
+            core.is_dead(gladiator_1)
+            print('Game Over', '{}', 'wins!')
+            break
+
+######################################PLAYER 2##################################
+        while True:
+            print(
+                '*************************************************************'
+            )
+            print('{}: Health:{}, Rage:{}, || {}: Health:{}, Rage:{} '.format(
+                gladiator_1['Name'], gladiator_1['Health'], gladiator_1[
+                    'Rage'], gladiator_2['Name'], gladiator_2['Health'],
+                gladiator_2['Rage']))
+            print(
+                '_____________________________________________________________'
+            )
+            time.sleep(1.3)
+
+            print('\n\nPlayer 2 is Up!\n\n')
+            time.sleep(1)
+            decision = slow_type(
+                '\n\n Whats your move fighter?\n\n\n -Attack\n -Heal\n\n')
+
+            if decision == 'attack'.lower():
+                core.attack(gladiator_1, gladiator_2)
+
+            elif decision == 'heal'.lower():
+                core.heal(gladiator_2)
+
+            elif health == 0:
+                core.is_dead(gladiator_2)
+                print('Game Over', '{}', 'wins!')
+                break
 
 if __name__ == '__main__':
     main()

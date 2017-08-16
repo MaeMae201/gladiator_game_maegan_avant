@@ -2,7 +2,7 @@ import random
 from random import randint
 
 
-def new_gladiator(health, rage, damage_low, damage_high):
+def new_gladiator(name, health, rage, damage_low, damage_high):
     """
     -Health = an int. between (0, 100)
     -Rage = an int. between (0, 100)
@@ -12,6 +12,7 @@ def new_gladiator(health, rage, damage_low, damage_high):
     provided values.
     """
     gladiator = {
+        'Name': name,
         'Health': health,
         'Rage': rage,
         'Damage Low': damage_low,
