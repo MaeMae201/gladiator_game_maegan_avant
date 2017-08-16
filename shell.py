@@ -22,25 +22,16 @@ def main():
     damage_low = 20
     damage_high = 30
 
-    # values = core.new_gladiator(health, rage, damage_low, damage_high)
-    # for key, value in values.items():
-    #     print('*', key, '-----', value)
-    # attacker = values
-    # defender = values
-
     print('Gladiator_1 its your turn to begin')
-
-    # gladiator = core.attack(attacker, defender)
-    # print(gladiator)
 
     choice = '\n Whats your move fighter?\n -attack\n -heal\n'
     attacker = core.new_gladiator(health, rage, damage_low, damage_high)
     for key, value in attacker.items():
-        print('*', key, '-----', value, '\n')
+        print('*', key, '---', value, '\n')
     defender = core.new_gladiator(health, rage, damage_low, damage_high)
     print('Gladiator_2')
     for key, value in defender.items():
-        print('*', key, '-----', value, '\n')
+        print('*', key, '---', value, '\n')
 
     decision = input(choice)
     if decision == 'attack':
