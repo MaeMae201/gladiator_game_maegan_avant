@@ -41,7 +41,6 @@ def attack(attacker, defender):
     elif attack == crit:
         defender['Health'] -= crit
         attacker['Rage'] = 0
-        return attack
 
 
 def heal(gladiator):
@@ -52,7 +51,7 @@ def heal(gladiator):
     if gladiator['Rage'] >= 10:
         gladiator['Rage'] -= 10
         gladiator['Health'] += 5
-
+        gladiator['Health'] <= 100
     return gladiator
 
 
