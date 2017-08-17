@@ -15,34 +15,36 @@ def get_move():
     ''' gets the user decision for which move to do '''
     while True:
         decision = slow_type(
-            '\n Whats your move fighter?\n -Attack\n -Heal\n').strip().lower()
+            '\n              -Attack \n              -Heal\n >>>').strip(
+            ).lower()
         if decision in ['attack', 'heal\n']:
             return decision
-        print('Invalid choice!')
+        print('~~~~~~~~~~~~~~~Invalid choice!~~~~~~~~~~~~~~~')
 
 
 def main():
-    print('\nGet Ready To Fight...\n')
+    print('\n        ...Get Ready To Fight...\n')
     time.sleep(1.5)
 
     health = 100
     rage = 0
     damage_low = 10
     damage_high = 20
-    gladiator_1 = core.new_gladiator('Player 1', health, rage, damage_low,
+
+    gladiator_1 = core.new_gladiator('Gladiator 1', health, rage, damage_low,
                                      damage_high)
-    gladiator_2 = core.new_gladiator('Player 2', health, rage, damage_low,
+    gladiator_2 = core.new_gladiator('Gladiator 2', health, rage, damage_low,
                                      damage_high)
     while True:
-        print(
-            '\n*************************************************************')
-        print('{}: Health:{}, Rage:{}, \n{}: Health:{}, Rage:{}'.format(
-            gladiator_1['Name'], gladiator_1['Health'], gladiator_1['Rage'],
-            gladiator_2['Name'], gladiator_2['Health'], gladiator_2['Rage']))
-        print('_____________________________________________________________')
+        print('\n***********************************************')
+        print('{}: Health || {}  Rage || {} \n{}: Health || {}  Rage || {}'.
+              format(gladiator_1['Name'], gladiator_1['Health'], gladiator_1[
+                  'Rage'], gladiator_2['Name'], gladiator_2['Health'],
+                     gladiator_2['Rage']))
+        print('_______________________________________________')
         time.sleep(.5)
 
-        print('\nPlayer 1 is Up!\n')
+        print('\n              Gladiator 1:')
         time.sleep(1)
         decision = get_move()
 
@@ -56,15 +58,15 @@ def main():
             exit()
 
 ######################################PLAYER 2##################################
-        print(
-            '\n*************************************************************')
-        print('{}: Health:{}, Rage:{}, \n{}: Health:{}, Rage:{}'.format(
-            gladiator_1['Name'], gladiator_1['Health'], gladiator_1['Rage'],
-            gladiator_2['Name'], gladiator_2['Health'], gladiator_2['Rage']))
-        print('_____________________________________________________________')
+        print('\n***********************************************')
+        print('{}: Health || {}  Rage || {} \n{}: Health || {}   Rage || {}'.
+              format(gladiator_1['Name'], gladiator_1['Health'], gladiator_1[
+                  'Rage'], gladiator_2['Name'], gladiator_2['Health'],
+                     gladiator_2['Rage']))
+        print('_______________________________________________')
         time.sleep(.5)
 
-        print('\nPlayer 2 is Up!\n')
+        print('\n             Gladiator 2:')
         time.sleep(1)
         decision = get_move()
 
