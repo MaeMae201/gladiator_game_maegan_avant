@@ -1,4 +1,3 @@
-import random
 from random import randint
 
 
@@ -15,15 +14,17 @@ def new_gladiator(name, health, rage, damage_low, damage_high):
         'Name': name,
         'Health': health,
         'Rage': rage,
-        'Damage Low': damage_low,
-        'Damage High': damage_high
+        'Damage_Low': damage_low,
+        'Damage_High': damage_high
     }
 
     return gladiator
 
 
-def attack(gladiator):
-    """
+def attack(attacker, defender):
+    """ dict, dict -> None 
+    Modifies the existing dictionaries for the attacker and defender
+
     -Each attack can hit normal or critical
     -Critical chance is the same as the attacker's rage
     (50 rage == 50% crit chance)
@@ -33,15 +34,13 @@ def attack(gladiator):
     -If gladiator crits, their rage is reset to 0
     -If gladiator hits normally, their rage is +15
     """
-    normal = randint(gladiator['Damage Low'], gladiator['Damage High'])
-    crit = normal * 2
-    attack = random.choice([normal, crit])
-    if attack == normal:
-        gladiator['Health'] -= normal
-        gladiator['Rage'] += 15
-    elif attack == crit:
-        gladiator['Health'] -= crit
-        gladiator['Rage'] = 0
+    hit = randint(attacker['Damage_Low'], attacker['Damage_High'])
+    if attacker['Rage'] > randint(1, 100):
+        defender['Health'] = max(0, defender['Health'] - (2 * hit))
+        attacker['Rage'] = 0
+    else:
+        defender['Health'] = max(0, defender['Health'] - hit)
+        attacker['Rage'] = min(100, attacker['Rage'] + 15)
 
 
 def heal(gladiator):
@@ -51,16 +50,11 @@ def heal(gladiator):
     """
     if gladiator['Rage'] >= 10:
         gladiator['Rage'] -= 10
-        gladiator['Health'] += 5
-        gladiator['Health'] <= 100
-    return gladiator
+        gladiator['Health'] = min(100, gladiator['Health'] + 5)
 
 
 def is_dead(gladiator):
     """
     Returns True iff gladiator has no health.
     """
-    if gladiator['Health'] == 0:
-        return True
-    else:
-        return False
+    return gladiator['Health'] <= 0
