@@ -17,7 +17,7 @@ def get_move():
         decision = slow_type(
             '\n              -Attack \n              -Heal\n >>>').strip(
             ).lower()
-        if decision in ['attack', 'heal\n']:
+        if decision in ['attack', 'heal']:
             return decision
         print('~~~~~~~~~~~~~~~Invalid choice!~~~~~~~~~~~~~~~')
 
@@ -59,7 +59,7 @@ def main():
 
 ######################################PLAYER 2##################################
         print('\n***********************************************')
-        print('{}: Health || {}  Rage || {} \n{}: Health || {}   Rage || {}'.
+        print('{}: Health || {}   Rage || {} \n{}: Health || {}   Rage || {}'.
               format(gladiator_1['Name'], gladiator_1['Health'], gladiator_1[
                   'Rage'], gladiator_2['Name'], gladiator_2['Health'],
                      gladiator_2['Rage']))
