@@ -2,26 +2,21 @@ from random import randint
 
 
 class Gladiator:
-    def __init__(self, health, rage, damage_low, damage_high):
+    def __init__(self, health, rage, damage_low, damage_high, name):
         """ (Gladiator) -> str
         Gladiators health is 100 and rage is 15 after attack
         """
-        self.health = health
-        self.rage = rage
+        self.health = 100
+        self.rage = 0
         self.damage_low = damage_low
-        self.damage_high = damage_high
+        self.damage_high = 20
+        self.name = name
 
     def __str__(self):
-        """(Gladiator) -> str
-       Returns the string of the health status
-       """
-        return (
-            '{}: Health || {}   Rage || {} \n{}: Health || {}   Rage || {}'.
-            format(gladiator_1['Name'], gladiator_1['Health'],
-                   gladiator_1['Rage'], gladiator_2['Name'],
-                   gladiator_2['Health'], gladiator_2['Rage']))
+        return '{}: {} Health || {}  Rage'.format(self.name, self.health,
+                                                  self.rage)
 
-    def attack(self, defender):
+    def attack(self, other):
         """ dict, dict -> None 
         Modifies the existing dictionaries for the attacker and defender
 
@@ -34,32 +29,33 @@ class Gladiator:
         -If gladiator crits, their rage is reset to 0
         -If gladiator hits normally, their rage is +15
         """
-        hit = randint(self.Damage_Low, self.Damage_High)
-        if self.Rage > randint(1, 100):
-            defender['Health'] = max(0, defender['Health'] - (2 * hit))
-            self.Rage = 0
+        hit = randint(self.damage_low, self.damage_high)
+        if self.rage > randint(1, 100):
+            other.health = max(0, other.health - (2 * hit))
+            self.rage = 0
         else:
-            defender['Health'] = max(0, defender['Health'] - hit)
-            self.Rage = min(100, self.Rage + 15)
+            other.health = max(0, other.health - hit)
+            self.rage = min(100, self.rage + 15)
 
-    # def super_punch():
-    #     """ if rage == 35 then you can use
-    #     super punch
-    #     """
-    #     if self.rage >= 35:
-    #         self.rage -= 20
+    # def super_hit(self, other):
+    #     punch = randint(self.damage_high)
+    #     if self.rage > 20:
+    #         other.health = max(0, other.health - (3 * punch))
+    #     else:
+    #         other.health = max(0, other.health - (2 * punch))
+    #         self.rage = min(100, self.rage + 25)
 
     def heal(self):
         """
         -Spends 10 rage to heal 5 health
         -Cannot heal above max health of 100
         """
-        if self.Rage >= 10:
-            self.Rage -= 10
-            self.Health = min(100, self.Health + 5)
+        if self.rage >= 10:
+            self.rage -= 10
+            self.health = min(100, self.health + 5)
 
     def is_dead(self):
         """
         Returns True iff gladiator has no health.
         """
-        return self.Health <= 0
+        return self.health <= 0
