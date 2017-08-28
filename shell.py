@@ -11,7 +11,7 @@ def slow_type(t):
     return input()
 
 
-def get_move():
+def get_move(Gladiator):
     ''' gets the user decision for which move to do '''
     while True:
         decision = slow_type(
@@ -26,15 +26,10 @@ def main():
     print('\n        ...Get Ready To Fight...\n')
     time.sleep(1.5)
 
-    health = 100
-    rage = 0
-    damage_low = 10
-    damage_high = 20
-
-    gladiator_1 = core.new_gladiator('Gladiator 1', health, rage, damage_low,
-                                     damage_high)
-    gladiator_2 = core.new_gladiator('Gladiator 2', health, rage, damage_low,
-                                     damage_high)
+    gladiator_1 = core.Gladiator('Gladiator 1', health, rage, damage_low,
+                                 damage_high)
+    gladiator_2 = core.Gladiator('Gladiator 2', health, rage, damage_low,
+                                 damage_high)
     while True:
         print('\n***********************************************')
         print('{}: Health || {}  Rage || {} \n{}: Health || {}  Rage || {}'.
@@ -46,14 +41,13 @@ def main():
 
         print('\n              Gladiator 1:')
         time.sleep(1)
-        decision = get_move()
+        decision = get_move(Gladiator)
 
         if decision == 'attack':
-            core.attack(gladiator_1, gladiator_2)
+            gladiator_1.attack(gladiator_2)
         elif decision == 'heal':
-            core.heal(gladiator_1)
-
-        if core.is_dead(gladiator_2):
+            gladiator_1.heal()
+        if gladiator_2.is_dead():
             print('\nGame Over -_- Gladiator 1 wins!')
             exit()
 
@@ -68,14 +62,14 @@ def main():
 
         print('\n             Gladiator 2:')
         time.sleep(1)
-        decision = get_move()
+        decision = get_move(Gladiator)
 
         if decision == 'attack':
-            core.attack(gladiator_2, gladiator_1)
+            gladiator_2.attack(gladiator_1)
         elif decision == 'heal':
-            core.heal(gladiator_2)
+            gladiator_2.heal()
 
-        if core.is_dead(gladiator_1):
+        if gladiator_1.is_dead():
             print('\nGame Over ~_~ Gladiator 2 wins!')
             exit()
 

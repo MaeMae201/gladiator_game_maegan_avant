@@ -1,60 +1,65 @@
 from random import randint
 
 
-def new_gladiator(name, health, rage, damage_low, damage_high):
-    """
-    -Health = an int. between (0, 100)
-    -Rage = an int. between (0, 100)
-    -damage_low = int
-    -damage_high = int
-    Returns dictionary representing the gladiator with the
-    provided values.
-    """
-    gladiator = {
-        'Name': name,
-        'Health': health,
-        'Rage': rage,
-        'Damage_Low': damage_low,
-        'Damage_High': damage_high
-    }
+class Gladiator:
+    def __init__(self, health, rage, damage_low, damage_high):
+        """ (Gladiator) -> str
+        Gladiators health is 100 and rage is 15 after attack
+        """
+        self.health = health
+        self.rage = rage
+        self.damage_low = damage_low
+        self.damage_high = damage_high
 
-    return gladiator
+    def __str__(self):
+        """(Gladiator) -> str
+       Returns the string of the health status
+       """
+        return (
+            '{}: Health || {}   Rage || {} \n{}: Health || {}   Rage || {}'.
+            format(gladiator_1['Name'], gladiator_1['Health'],
+                   gladiator_1['Rage'], gladiator_2['Name'],
+                   gladiator_2['Health'], gladiator_2['Rage']))
 
+    def attack(self, defender):
+        """ dict, dict -> None 
+        Modifies the existing dictionaries for the attacker and defender
 
-def attack(attacker, defender):
-    """ dict, dict -> None 
-    Modifies the existing dictionaries for the attacker and defender
+        -Each attack can hit normal or critical
+        -Critical chance is the same as the attacker's rage
+        (50 rage == 50% crit chance)
+        - Damage dealt is a random integer between the attacker's
+        damage\low and damage\_high
+        -Critting doubles damage dealt
+        -If gladiator crits, their rage is reset to 0
+        -If gladiator hits normally, their rage is +15
+        """
+        hit = randint(self.Damage_Low, self.Damage_High)
+        if self.Rage > randint(1, 100):
+            defender['Health'] = max(0, defender['Health'] - (2 * hit))
+            self.Rage = 0
+        else:
+            defender['Health'] = max(0, defender['Health'] - hit)
+            self.Rage = min(100, self.Rage + 15)
 
-    -Each attack can hit normal or critical
-    -Critical chance is the same as the attacker's rage
-    (50 rage == 50% crit chance)
-    - Damage dealt is a random integer between the attacker's
-    damage\low and damage\_high
-    -Critting doubles damage dealt
-    -If gladiator crits, their rage is reset to 0
-    -If gladiator hits normally, their rage is +15
-    """
-    hit = randint(attacker['Damage_Low'], attacker['Damage_High'])
-    if attacker['Rage'] > randint(1, 100):
-        defender['Health'] = max(0, defender['Health'] - (2 * hit))
-        attacker['Rage'] = 0
-    else:
-        defender['Health'] = max(0, defender['Health'] - hit)
-        attacker['Rage'] = min(100, attacker['Rage'] + 15)
+    # def super_punch():
+    #     """ if rage == 35 then you can use
+    #     super punch
+    #     """
+    #     if self.rage >= 35:
+    #         self.rage -= 20
 
+    def heal(self):
+        """
+        -Spends 10 rage to heal 5 health
+        -Cannot heal above max health of 100
+        """
+        if self.Rage >= 10:
+            self.Rage -= 10
+            self.Health = min(100, self.Health + 5)
 
-def heal(gladiator):
-    """
-    -Spends 10 rage to heal 5 health
-    -Cannot heal above max health of 100
-    """
-    if gladiator['Rage'] >= 10:
-        gladiator['Rage'] -= 10
-        gladiator['Health'] = min(100, gladiator['Health'] + 5)
-
-
-def is_dead(gladiator):
-    """
-    Returns True iff gladiator has no health.
-    """
-    return gladiator['Health'] <= 0
+    def is_dead(self):
+        """
+        Returns True iff gladiator has no health.
+        """
+        return self.Health <= 0
