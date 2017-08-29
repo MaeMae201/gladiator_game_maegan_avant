@@ -1,6 +1,7 @@
 import core, shell
 
 
+#these tests ran without using class but now they dont !!!!
 def test_new_gladiator():
     health = 100
     rage = 0

@@ -37,12 +37,15 @@ class Gladiator:
             other.health = max(0, other.health - hit)
             self.rage = min(100, self.rage + 15)
 
-    # def super_hit(self, other):
-    #     punch = randint(self.damage_high)
-    #     if self.rage > 20:
+    # def super_sting(self, other):
+    #     """(dict), dict -> (Nonetype)
+    #     big hit
+    #     """
+    #     punch = (self.damage_high)
+    #     if self.rage > randint(25, 100):
     #         other.health = max(0, other.health - (3 * punch))
     #     else:
-    #         other.health = max(0, other.health - (2 * punch))
+    #         other.health = max(0, other.health - punch)
     #         self.rage = min(100, self.rage + 25)
 
     def heal(self):
