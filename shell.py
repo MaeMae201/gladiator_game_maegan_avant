@@ -56,6 +56,20 @@ def main():
         print(gladiator_1)
         print(gladiator_2)
         print('_______________________________________________')
+        cprint(
+            'o\_/\o\n'
+            '( Oo)                    \|/\n'
+            '(_=-)  .===O-  ~~Z~A~P~~ -O-\n'
+            '/   \_/U                /| \ \n'
+            '||  |_/                  \n'
+            '\\  |                     \n'
+            '{K ||                     \n'
+            '| PP                      \n'
+            '| ||                       \n'
+            '(__\\)                      \n',
+            'blue',
+            end="")
+
         time.sleep(.5)
 
         print('\n              Gladiator 1:')
