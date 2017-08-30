@@ -1,22 +1,43 @@
 import core, time, sys
 from random import randint
+from termcolor import cprint
 
 
-def slow_type(t):
-    typing_speed = 7
-    for l in t:
-        sys.stdout.write(l)
-        sys.stdout.flush()
-        time.sleep(typing_speed / 970.0)
-    return input()
+def end_message(s):
+    cprint(
+        '\nGame Over ~_~ Gladiator {} wins!'.format(s),
+        'red',
+        attrs=['blink'],
+        end="")
+    cprint(
+        '                              .___.                              \n'
+        '         /)                ,-^     ^-.                           \n'
+        '        //                /           \\                          \n'
+        '.-------| |--------------/  __     __  \\-------------------.__   \n'
+        '|WMWMWMW| |>>>>>>>>>>>>> | /',
+        'blue',
+        end="")
+    cprint('**', 'red', attrs=['blink'], end="")
+    cprint('\\   /', 'blue', end="")
+    cprint('**', 'red', attrs=['blink'], end="")
+    cprint(
+        '\\ |>>>>>>>>>>>>>>>>>>>>>>:> \n'
+        '`-------| |--------------| \\__/   \\__/ |-------------------^^    \n'
+        '        \\\\               \\    /|\\     /                          \n'
+        '         \\)               \\   \\_/    /                           \n'
+        '                           |        |                            \n'
+        '                           |+H+H+H+ |                            \n'
+        '                           \\        /                            \n'
+        '                            ^-----^                              \n',
+        'blue',
+        end="")
 
 
 def get_move():
     ''' gets the user decision for which move to do '''
     while True:
-        decision = slow_type(
-            '\n              -Attack \n              -Heal\n  >>>').strip(
-            ).lower()
+        decision = input('\n              -Attack \n              -Heal\n  >>>'
+                         ).strip().lower()
         if decision in ['attack', 'heal']:
             return decision
         print('<<~~~~~~~~~~~~~~~Invalid choice!~~~~~~~~~~~~~~~>>')
@@ -48,9 +69,8 @@ def main():
         # # elif decision == 'super sting':
         # #     gladiator_1.super_sting(other)
         if gladiator_2.is_dead():
-            print('\nGame Over -_- Gladiator 1 wins!')
+            end_message('1')
             exit()
-
         ##########*******************#######PLAYER 2########*******************#########
         print('\n***********************************************')
         print(gladiator_1)
@@ -69,8 +89,7 @@ def main():
         # elif decision == 'super sting':
         #     gladiator_2.super_sting(other)
         if gladiator_1.is_dead():
-            print('\nGame Over ~_~ Gladiator 2 wins!')
-            exit()
+            end_message('2')
 
 
 if __name__ == '__main__':
