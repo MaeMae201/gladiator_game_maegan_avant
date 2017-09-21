@@ -1,6 +1,19 @@
 import core, time, sys
 from random import randint
 from termcolor import cprint
+cprint(
+    'o\_/\o\n'
+    '( Oo)                    \|/\n'
+    '(_=-)  .===O-  ~~Z~A~P~~ -O-\n'
+    '/   \_/U                /| \ \n'
+    '||  |_/                  \n'
+    '\\  |                     \n'
+    '{K ||                     \n'
+    '| PP                      \n'
+    '| ||                       \n'
+    '(__\\)                      \n',
+    'blue',
+    end="")
 
 
 def end_message(s):
